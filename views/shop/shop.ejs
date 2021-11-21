@@ -1,0 +1,44 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<div class="card_container">
+    <% products.forEach(product =>{ %>
+        <div class="card">
+            <div class="image">
+                <img src="<%= product.imageUrl %>" alt="product image">
+            </div>
+            <p class="text">
+                <%= product.title %>
+            </p>
+            <p class="text">
+                <%= product.price %>
+            </p>
+            <div class="action">
+                <a href="/products/<%= product.id %>" class="btn">Szczegóły</a>
+                <form action="/products/buy/<%= product.id %>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="text" name="id" value="<%= product.id %>" disabled hidden>
+                    <button class="btn">Kup</button>
+                </form>
+            </div>
+        </div>
+        <% }); %>
+        <% if(maxPages > 1){ %>
+            <div class="pagination">
+                <% if(page > 1) { %>
+                <a href="?page=<%= page - 1 %>" class="page page--arrow"><</a>
+                <% } %>
+                <% for (let i = 1; i <= maxPages; i++) { %>
+                    <a href="?page=<%= i %>" class="<%= page === i ? 'page page--active' : 'page' %>"><%= i %></a>
+                    <% } %>
+                <% if(page < maxPages) { %>    
+                <a href="?page=<%= page + 1 %>" class="page page--arrow">></a>
+                <% } %>
+            </div>
+        <% } %>
+    <% if(products.length === 0){ %>
+        <h3>Brak produktów ;(</h3>
+    <% }  %>
+</div>
+        
+<%- include('../partial/end.ejs') %>

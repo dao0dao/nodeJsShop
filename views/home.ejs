@@ -1,0 +1,25 @@
+<%- include('partial/head.ejs') %>
+<%- include('partial/nav.ejs') %>
+
+<div class="home_container">
+    <%if(info) {%>
+        <div class="info <%= info.type %>">
+            <p><%= info.message %></p>
+        </div>
+    <% } %>
+    <h1>
+        Witamy na stronie z najlepszymi produktami !
+    </h1>
+    <p><span class="number">1.</span><span>Jest to aplikacja ogólnodostępna</span></p>
+    <p><span class="number">2.</span><span>Autor aplikacji nie ponosi odpowiedzialności za treści umieszczane przez innych użytkowników.</span></p>
+    <p><span class="number">3.</span><span>Logowanie na konto admina - <span class="color">admin@admin.pl</span>, hasło: <span class="color">admin</span>.</span></p>
+    <p><span class="number">4.</span><span>Tylko admin może dodawać nowe wpisy w aplikacji.</span></p>
+    <p><span class="number">5.</span><span>Admin może usunąć konto użytkownika.</span></p>
+    <p><span class="number">6.</span><span>Dla rejestracji jako zwykły użytkownik należy podać e-maila, na który zostanie wysłany kod aktywacyjny.</span></p>
+    <p><span class="number">7.</span><span>Użytkownik może sam usunąć swoje konto.</span></p>
+    <p><span class="number">8.</span><span>Uprzejma prośba o nierozsyłanie spamu na adresy e-mail.</span></p>
+    <p><span class="number">9.</span><span>Uprzejma prośba o niewstawianie treści nieetycznych i obraźliwych.</span></p>
+</div>
+   
+        
+<%- include('partial/end.ejs') %>

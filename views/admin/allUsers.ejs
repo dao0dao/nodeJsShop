@@ -1,0 +1,49 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<div class="userContainer">
+    <p class="title">Lista użytkowników:</p>
+    <% if(users.length === 0){ %>
+        <p class="empty">Brak zarejestrowanych użytkowników.</p>
+    <% } else { %>
+ 
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Imię:</th>
+                <th>Nazwisko:</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.map((user, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <% if(user.name === null || user.name === ''){ %>
+                    <td class="empty">brak</td>
+                    <% } else { %>
+                    <td><%= user.name %></td>
+                    <% } %>
+                    <% if(user.surname === null || user.surname === ''){ %>
+                    <td class="empty">brak</td>
+                    <% } else { %>
+                        <td><%= user.surname %></td>
+                    <% } %>
+                    <td><%= user.email %></td>
+                    <td>
+                        <form action="/user/delete" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <input type="hidden" name="userId" value="<%= user.id %>">
+                            <button class="btn">Usuń</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } %>   
+</div>
+
+<%- include('../partial/end.ejs') %>

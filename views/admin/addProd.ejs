@@ -1,0 +1,25 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<% if(infoErr){%>
+    <div>
+        <% infoErr.messages.forEach(m => { %>
+            <p class="info static error"><%= m %></p>
+        <% }); %>
+    </div>
+<% }%>
+
+<form class="addForm" action="/addProduct?_csrf=<%= csrfToken %>" method="post" enctype="multipart/form-data">
+    <label for="product">Nazwa</label>
+    <input type="text" name="product" id="product" class="form_input" value="<%= infoErr != undefined ? infoErr.product : '' %>">
+    <label for="description">Opis</label>
+    <textarea name="description" id="description" class="form_input"><%= infoErr != undefined ? infoErr.description : '' %></textarea>
+    <label for="price">Cena</label>
+    <input type="number" name="price" id="price" class="form_input" min="0" step="0.01" value="<%= infoErr != undefined ? infoErr.price : 0 %>">
+    <label for="imgeUrl">Miniaturka</label>
+    <input type="file" name="imageUrl" id="imageUrl" class="form_input">
+    
+<button type="submit" class="btn">Dodaj produkt</button>
+</form>
+
+<%- include('../partial/end.ejs') %>

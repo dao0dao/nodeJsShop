@@ -1,0 +1,108 @@
+<nav class="mobile">
+    <button id="btn" class="btn--burger">
+        <svg class="svg" width="39" height="25" viewBox="0 0 39 25" xmlns="http://www.w3.org/2000/svg">
+            <rect width="39" height="7" rx="3.5" />
+            <rect y="18" width="39" height="7" rx="3.5" />
+            <rect y="9" width="39" height="7" rx="3.5" />
+        </svg> 
+    </button>
+    <div id="menu" class="burger">
+        <p class="<%= path === '/' ? 'active' : '' %>">
+            <a href="/">Główna</a>
+        </p>
+        <p class="<%= path === '/products' ? 'active' : '' %>">
+            <a href="/products">Sklep</a>
+        </p>
+        <% if(isLogin){ %>
+        <p class="<%= path === '/orders' ? 'active' : '' %>">
+            <a href="/orders">Koszyk</a>
+        </p>
+        <% }%>
+        <% if(isLogin){ %>
+        <p class="<%= path === '/bought' ? 'active' : '' %>">
+            <a href="/bought">Kupione</a>
+        </p>
+        <% }%>
+        <% if(!isAdmin){ %>
+        <p class="<%= path === '/profile'? 'active' : '' %>">
+            <a href="/profile">Panel użytkownika</a>
+        </p>
+        <% }%>
+        <% if(isLogin !== false && isAdmin === true){ %>
+        <p class="<%= path === '/addProduct'? 'active' : '' %>">
+            <a href="/addProduct">Dodaj produkt</a>
+        </p>
+        <% }%>
+        <% if(isLogin !== false && isAdmin === true){ %>
+        <p class="<%= path === '/users'? 'active' : '' %>">
+            <a href="/users">Użytkownicy</a>
+        </p>
+        <% }%>
+    </div>
+    <% if(!isLogin){  %>
+    <p class="<%= path === '/login'? 'active' : '' %> left">
+        <a href="/login">Zaloguj</a>
+    </p>
+    <% }%>
+    <% if(!isLogin){ %>
+        <p class="<%= path === '/register'? 'active' : '' %>">
+            <a href="/register">Rejestracja</a>
+        </p>
+    <% }%>
+    <% if(isLogin){ %>
+    <p class="left">
+        <a href="/logout">Wyloguj</a>
+    </p>
+    <% }%>
+</nav>
+<nav class="desktop">
+    <div class="leftSide">
+        <p class="<%= path === '/' ? 'active' : '' %>">
+            <a href="/">Główna</a>
+        </p>
+        <p class="<%= path === '/products' ? 'active' : '' %>">
+            <a href="/products">Sklep</a>
+        </p>
+        <% if(isLogin){ %>
+        <p class="<%= path === '/orders' ? 'active' : '' %>">
+            <a href="/orders">Koszyk</a>
+        </p>
+        <% }%>
+        <% if(isLogin){ %>
+        <p class="<%= path === '/bought' ? 'active' : '' %>">
+            <a href="/bought">Kupione</a>
+        </p>
+        <% }%>
+        <% if(!isAdmin){ %>
+        <p class="<%= path === '/profile'? 'active' : '' %>">
+            <a href="/profile">Panel użytkownika</a>
+        </p>
+        <% }%>
+        <% if(isLogin !== false && isAdmin === true){ %>
+        <p class="<%= path === '/addProduct'? 'active' : '' %>">
+            <a href="/addProduct">Dodaj produkt</a>
+        </p>
+        <% }%>
+        <% if(isLogin !== false && isAdmin === true){ %>
+        <p class="<%= path === '/users'? 'active' : '' %>">
+            <a href="/users">Użytkownicy</a>
+        </p>
+        <% }%>
+    </div>
+    <% if(!isLogin){  %>
+    <p class="<%= path === '/login'? 'active' : '' %> left">
+        <a href="/login">Zaloguj</a>
+    </p>
+    <% }%>
+    <% if(!isLogin){ %>
+        <p class="<%= path === '/register'? 'active' : '' %>">
+            <a href="/register">Rejestracja</a>
+        </p>
+    <% }%>
+    <% if(isLogin){ %>
+    <p class="left">
+        <a href="/logout">Wyloguj</a>
+    </p>
+    <% }%>
+</nav>
+<main>

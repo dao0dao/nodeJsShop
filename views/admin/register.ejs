@@ -1,0 +1,31 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<div class="login_container">
+    <%if(info) {%>
+        <% info.forEach(i =>{ %>
+            <div class="info static <%= i.type %>">
+                <p><%= i.message %></p>
+            </div>
+        <% }) %>
+    <% } %>
+    <form action="/register" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="username">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Adres email">
+        </div>
+        <div class="password">
+            <label for="password">Hasło</label>
+            <input type="password" name="password" id="password" placeholder="Hasło">
+        </div>
+        <div class="password">
+            <label for="confirmPassword">Potwierdź hasło</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Potwierdź hasło">
+        </div>
+        <button type="submit" class="btn">Zarejestruj się</button>
+    </form>
+</div>
+   
+        
+<%- include('../partial/end.ejs') %>

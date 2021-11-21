@@ -1,0 +1,23 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<div class="bought_container">
+    <p>Twoje zamówienia:</p>
+    <% orders.map(order => { %>
+        <div class="order">
+            <p class="title">Zamówienie z dnia: <%= order.date %></p>
+            <p class="subtitle">Nr: <%= order.id %></p>
+            <% order.orderedProducts.map(orProd => { %>
+            <p class="product">
+                <span><%= orProd.title %></span>
+                <span>Ilość: <%= orProd.count %></span>
+                <span>Cena jednostkowa: <span class="accent"><%= orProd.prize %></span></span>
+            </p>
+            <% }); %>
+            <p class="price">Całkowita wartość zamówienia: <span class="accent"><%= order.totalPrice %></span></p>
+        </div>
+    <% }); %>
+</div>
+
+        
+<%- include('../partial/end.ejs') %>

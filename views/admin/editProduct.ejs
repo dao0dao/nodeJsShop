@@ -1,0 +1,18 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<form class="addForm" action="/addProduct/update/<%= product.id %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label for="product">Nazwa</label>
+    <input type="text" name="product" id="product" class="form_input" value="<%= product.title%>">
+    <label for="description">Opis</label>
+    <textarea name="description" id="description" class="form_input" value="<%= product.description %>"></textarea>
+    <label for="price">Cena</label>
+    <input type="number" name="price" id="price" class="form_input" min="0" step="0.01" value="<%= product.price %>">
+    <label for="imgeUrl">Miniaturka</label>
+    <input type="file" name="imageUrl" id="imageUrl" class="form_input">
+    
+<button type="submit" class="btn">Zaktualizuj</button>
+</form>
+
+<%- include('../partial/end.ejs') %>

@@ -1,0 +1,44 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<% if(infoErr){%>
+    <div>
+        <% infoErr.messages.forEach(m => { %>
+            <p class="info static error"><%= m %></p>
+        <% }); %>
+    </div>
+<% }%>
+
+<div class="profile_container">
+    <div>
+            <form action="/profile/update" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="data">
+                    <label for="name">Imię</label>
+                    <input type="text" name="name" id="name" value="<%= infoErr ? infoErr.name : name %>">
+                </div>
+                <div class="data">
+                    <label for="surname">Nazwisko</label>
+                    <input type="text" name="surname" id="surname" value="<%= infoErr ? infoErr.surname : surname %>">
+                </div>
+                <div class="data">
+                    <label for="password">Nowe hasło</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="data">
+                    <label for="password_confirm">Potwierdź nowe hasło</label>
+                    <input type="password" name="password_confirm" id="password_confirm">
+                </div>
+                <button class="btn" type="submit">Zaktualizuj dane</button>
+            </form>
+            <% if (!isAdmin){ %>
+                <form action="/profile/delete" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">        
+                    <button class="btn" type="submit">Usuń konto</button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+    
+    
+    <%- include('../partial/end.ejs') %>

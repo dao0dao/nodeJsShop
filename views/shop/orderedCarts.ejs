@@ -1,0 +1,34 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<div class="boughtContainer">
+    <p class="title">Twoje zakupy:</p>
+    <div class="carts">
+        <% allCarts.map(cart => { %>
+            <div class="cart">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table_head">Nazwa:</th>
+                            <th class="table_head">Cena za szt.:</th>
+                            <th class="table_head">Ilość:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cart.products.map(product => { %>
+                            <tr>
+                                <td class="table_body"><%= product.title %></td>
+                                <td class="table_body"><%= product.price %></td>
+                                <td class="table_body"><%= product.count %></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                    <p class="price">Kosz zakupu: <span><%= cart.cartPrice %>PLN</span></p>
+                    <a href="/bought/<%= cart.id  %>" download>Pobierz paragon</a>
+                </div>
+                <% }) %>
+    </div>
+</div>
+
+<%- include('../partial/end.ejs') %>

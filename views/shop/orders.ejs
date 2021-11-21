@@ -1,0 +1,42 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+<% if (order.products.length > 0){   %>
+    <div class="order_container">
+        <div class="title">
+            <p class="text">Twój koszyk</p>
+        </div>
+        <% order.products.map(function(prod, index){ %>
+            <div class="product">
+                <p class="index column"><%= index + 1 %>.</p>
+                <p class="text column"><%= prod.title %></p>
+                <p class="text column">Ilość: <%= prod.count %></p>
+                <form class=" column" action="/orders/add/<%= prod.productId %>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">  
+                    <input type="text" name="id" value="<%= prod.productId %>" disabled hidden>
+                    <button type="submit" class="btn">+</button>
+                </form>
+                <form class=" column" action="/orders/remove/<%= prod.productId %>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="text" name="id" value="<%= prod.productId %>" disabled hidden>
+                    <button type="submit" class="btn">-</button>
+                </form>
+            </div>
+            <% })                                        %>
+            <div class="totalPrice">
+                <p>Koszt całkowity: <%= order.totalPrice %> PLN</p>
+            </div>
+            <div class="buy">
+                <form action="/orders/bought" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">            
+                    <button type="submit" class="btn">Kup</button>
+            </form>
+        </div>
+    </div>
+
+<% } else { %>    
+    <p class="noOrders">Brak zamówień</p>
+<% }        %>
+
+        
+<%- include('../partial/end.ejs') %>

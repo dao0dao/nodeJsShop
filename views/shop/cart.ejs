@@ -1,0 +1,35 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/nav.ejs') %>
+
+ <div class="cart_container">
+     <div class="title">
+        <a class="btn" href="/products">Wróć</a>
+        <p class="text">
+             <%= product.title %>
+        </p>
+    </div>
+    <div class="image">
+        <img src="<%= product.imageUrl %>" alt="product image">
+    </div>
+    <p class="description">
+        <%= product.description %>
+    </p>
+    <div class="action">
+        <form action="/products/buy/<%= product.id %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="text" name="id" value="<%= product.id %>" disabled hidden>
+            <button class="btn">Kup</button>
+        </form>
+    </div>
+        <% if(isAdmin){ %>
+            <div class="action action--delete">
+                <form action="/products/delete/<%= product.id %>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="imageUrl" value="<%= product.imageUrl %>">
+                    <button class="btn">Usuń</button>
+                </form>
+            </div>
+        <% } %>
+</div>
+
+<%- include('../partial/end.ejs') %>
