@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 const setHtml = (domain, uniqId) => {
     const html = `<h1>Witamy w sklep node.js</h1>
     <p>Aby dokończyć proces rejestracji skorzystaj z linku aktywacyjnego:</p>
-    <a href="${domain}/activation/${uniqId}" target="_blank">${domain}/activation/${uniqId}</a>
+    <a href="https://${domain}/activation/${uniqId}" target="_blank">https://${domain}/activation/${uniqId}</a>
     <p>Jest on ważny tylko przez 1 godzinę.</p>
     <p>Serdecznie pozdrawiamy</p>`;
     return html.toString();
