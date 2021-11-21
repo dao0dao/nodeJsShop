@@ -68,16 +68,16 @@ User.hasMany(Cart, { onDelete: 'CASCADE' });
 //     });
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-    sequelize.sync()
-        .then(() => {
-            console.log('połączono z bazą danych');
-        })
-        .catch((err) => {
-            app.listen(port, () => {
-                setTimeout(() => {
-                    sequelize.sync();
-                }, (1000 * 60 * 5));
-                console.log(`brak połączenia z bazą danych, następna próba za 5 min`);
-            });
-        });
+    // sequelize.sync()
+    //     .then(() => {
+    //         console.log('połączono z bazą danych');
+    //     })
+    //     .catch((err) => {
+    //         app.listen(port, () => {
+    //             setTimeout(() => {
+    //                 sequelize.sync();
+    //             }, (1000 * 60 * 5));
+    //             console.log(`brak połączenia z bazą danych, następna próba za 5 min`);
+    //         });
+    //     });
 });
