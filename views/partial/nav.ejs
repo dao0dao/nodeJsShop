@@ -23,7 +23,7 @@
             <a href="/bought">Kupione</a>
         </p>
         <% }%>
-        <% if(!isAdmin){ %>
+        <% if(isLogin && !isAdmin){ %>
         <p class="<%= path === '/profile'? 'active' : '' %>">
             <a href="/profile">Panel użytkownika</a>
         </p>
@@ -73,7 +73,7 @@
             <a href="/bought">Kupione</a>
         </p>
         <% }%>
-        <% if(!isAdmin){ %>
+        <% if(isLogin && !isAdmin){ %>
         <p class="<%= path === '/profile'? 'active' : '' %>">
             <a href="/profile">Panel użytkownika</a>
         </p>
