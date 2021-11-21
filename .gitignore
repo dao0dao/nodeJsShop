@@ -1,5 +1,4 @@
 node_modules/
-session/*
 /invoice/
 image/
 nodemon.json
